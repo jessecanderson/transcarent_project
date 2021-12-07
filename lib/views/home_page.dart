@@ -16,6 +16,7 @@ class _HomeViewState extends State<HomeView> {
   bool hasResults = false;
   List<ImagesResult>? results = [];
 
+  final formKey = GlobalKey<FormState>();
   final TextEditingController _searchFieldController = TextEditingController();
 
   @override
@@ -26,9 +27,15 @@ class _HomeViewState extends State<HomeView> {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-              child: SearchWidget(searchFieldController: _searchFieldController),
+              child: SearchWidget(searchFieldController: _searchFieldController, formKey: formKey),
             ),
-            ElevatedButton(onPressed: willSearch, child: const Text('Search')),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(onPressed: willSearch, child: const Text('Search')),
+                ElevatedButton(onPressed: onClear, child: const Text('Clear')),
+              ],
+            ),
             hasResults
                 ? Expanded(
                     child: Padding(
@@ -43,21 +50,21 @@ class _HomeViewState extends State<HomeView> {
   }
 
   void willSearch() async {
-    if (_searchFieldController.text.isEmpty) {
-      Get.defaultDialog(
-        title: 'Error',
-        content: const Text('The search field was empty, please make sure you have searched something.'),
-        textConfirm: "Ok",
-        onConfirm: () => Get.back(),
-        radius: 50.0,
-      );
-      return;
+    if (formKey.currentState!.validate()) {
+      var searchTerm = _searchFieldController.text;
+      SearchResults response = await ApiBase.getImages(searchTerm);
+      results = response.imagesResults;
+      setState(() {
+        hasResults = true;
+      });
     }
-    var searchTerm = _searchFieldController.text;
-    SearchResults response = await ApiBase.getImages(searchTerm);
-    results = response.imagesResults;
+  }
+
+  void onClear() {
+    _searchFieldController.clear();
+    results = [];
     setState(() {
-      hasResults = !hasResults;
+      hasResults = false;
     });
   }
 }

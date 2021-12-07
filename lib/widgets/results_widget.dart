@@ -20,11 +20,20 @@ class ResultsWidget extends StatelessWidget {
 
   List<Widget> _buildGrid() {
     var gridItems = imagesResult
-        .map((result) => InkWell(
-              child: Image.network(result.original),
-              onTap: () => Get.to(
-                () => DetailView(
-                  result: result,
+        .map((result) => Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: InkWell(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.network(
+                    result.original,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                onTap: () => Get.to(
+                  () => DetailView(
+                    result: result,
+                  ),
                 ),
               ),
             ))
