@@ -52,7 +52,7 @@ class ImagesResult {
     this.position,
     required this.thumbnail,
     this.source,
-    this.title,
+    required this.title,
     required this.link,
     required this.original,
     this.isProduct,
@@ -61,7 +61,7 @@ class ImagesResult {
   int? position;
   String thumbnail;
   String? source;
-  String? title;
+  String title;
   String link;
   String original;
   bool? isProduct;

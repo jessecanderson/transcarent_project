@@ -25,15 +25,19 @@ class ResultsWidget extends StatelessWidget {
               child: InkWell(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
-                  child: Image.network(
-                    result.original,
-                    fit: BoxFit.cover,
+                  child: Hero(
+                    tag: result.title,
+                    child: Image.network(
+                      result.original,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 onTap: () => Get.to(
                   () => DetailView(
                     result: result,
                   ),
+                  transition: Transition.noTransition,
                 ),
               ),
             ))

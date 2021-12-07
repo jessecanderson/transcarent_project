@@ -11,7 +11,16 @@ class DetailView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-        child: Image.network(result.original),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8.0),
+            child: Hero(
+              tag: result.title,
+              child: Image.network(result.original),
+            ),
+          ),
+        ),
       ),
     );
   }
