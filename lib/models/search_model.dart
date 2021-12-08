@@ -49,7 +49,7 @@ class SearchResults {
 
 class ImagesResult {
   ImagesResult({
-    this.position,
+    required this.position,
     required this.thumbnail,
     this.source,
     required this.title,
@@ -58,7 +58,7 @@ class ImagesResult {
     this.isProduct,
   });
 
-  int? position;
+  int position;
   String thumbnail;
   String? source;
   String title;

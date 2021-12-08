@@ -5,7 +5,7 @@ class ApiBase {
   static const String _url = 'serpapi.com';
   static const String _searchString = 'search.json';
 
-  static Future<dynamic> getImages(String searchTerm) async {
+  static Future<dynamic> getImages(String searchTerm, {int page = 1}) async {
     var params = {
       'engine': "google",
       'q': searchTerm,
@@ -13,6 +13,7 @@ class ApiBase {
       'gl': "us",
       'hl': "en",
       'tbm': "isch",
+      "ijn": page.toString(),
       'api_key': "389b2be9de5745d3e84951cf6277d1ff05392446c047abdb8caeafccfc713978",
     };
 
