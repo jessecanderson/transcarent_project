@@ -15,3 +15,4 @@ Search Google API through [Serpapi](https://serpapi.com/).
 - Update some animations.
 - I think that due to the number of network calls for the images that causes some timeout errors. Need to investigate that.
 - Fix web version.
+- Fix endless scrolling to check BEFORE it his the bottome of the grid view.

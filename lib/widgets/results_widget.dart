@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:transcarent_project/controllers/search_controller.dart';
 import 'package:transcarent_project/models/search_model.dart';
 import 'package:transcarent_project/views/detail_view.dart';
+import 'package:transcarent_project/widgets/lottie_widget.dart';
 
 class ResultsWidget extends StatelessWidget {
   ResultsWidget({Key? key, required this.imagesResult}) : super(key: key);
@@ -41,7 +42,11 @@ class ResultsWidget extends StatelessWidget {
                       tag: result.position,
                       child: CachedNetworkImage(
                         imageUrl: result.original,
-                        placeholder: (context, url) => const CircularProgressIndicator(),
+                        placeholder: (context, url) => const SizedBox(
+                          height: 50,
+                          width: 50,
+                          child: LottieAnimation(animation: 'spinning_dots'),
+                        ),
                         errorWidget: (context, url, error) => const Icon(Icons.cloud_off),
                         fit: BoxFit.cover,
                       ),

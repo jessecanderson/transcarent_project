@@ -4,6 +4,7 @@ import 'package:gallery_saver/gallery_saver.dart';
 import 'package:get/get.dart';
 import 'package:transcarent_project/controllers/save_controller.dart';
 import 'package:transcarent_project/models/search_model.dart';
+import 'package:transcarent_project/widgets/lottie_widget.dart';
 
 class DetailView extends StatelessWidget {
   DetailView({Key? key, required this.result}) : super(key: key);
@@ -36,7 +37,11 @@ class DetailView extends StatelessWidget {
             children: [
               GetBuilder<SaveController>(builder: (_) {
                 if (_saveController.isSaving.value) {
-                  return const CircularProgressIndicator();
+                  return const SizedBox(
+                    height: 50,
+                    width: 50,
+                    child: LottieAnimation(animation: 'loading_success'),
+                  );
                 } else {
                   return IconButton(
                     iconSize: 35.0,

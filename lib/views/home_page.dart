@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:transcarent_project/controllers/search_controller.dart';
 import 'package:transcarent_project/widgets/results_widget.dart';
-import 'package:transcarent_project/widgets/search_actions.dart';
+import 'package:transcarent_project/widgets/search_actions_widgets.dart';
 import 'package:transcarent_project/widgets/search_widget.dart';
 
 class HomeView extends StatelessWidget {

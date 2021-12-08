@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:transcarent_project/controllers/search_controller.dart';
+import 'package:transcarent_project/widgets/lottie_widget.dart';
 
 class SearchActions extends StatelessWidget {
   SearchActions({
@@ -25,7 +26,11 @@ class SearchActions extends StatelessWidget {
             GetBuilder<SearchController>(builder: (_) {
               switch (_.searchStatus.value) {
                 case SearchStatus.searching:
-                  return const CircularProgressIndicator();
+                  return const SizedBox(
+                    height: 50,
+                    width: 50,
+                    child: LottieAnimation(animation: 'loading_success'),
+                  );
 
                 case SearchStatus.done:
                   return ElevatedButton(
