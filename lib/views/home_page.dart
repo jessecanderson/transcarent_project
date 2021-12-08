@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:transcarent_project/controllers/search_controller.dart';
 import 'package:transcarent_project/widgets/results_widget.dart';
+import 'package:transcarent_project/widgets/search_actions.dart';
 import 'package:transcarent_project/widgets/search_widget.dart';
 
 class HomeView extends StatelessWidget {
   HomeView({Key? key}) : super(key: key);
-
-  final _searchController = Get.put(SearchController());
 
   final formKey = GlobalKey<FormState>();
   final TextEditingController _searchFieldController = TextEditingController();
@@ -22,13 +21,9 @@ class HomeView extends StatelessWidget {
               padding: const EdgeInsets.only(left: 8.0, right: 8.0),
               child: SearchWidget(searchFieldController: _searchFieldController, formKey: formKey),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(onPressed: onSearchPress, child: const Text('Search')),
-                ElevatedButton(
-                    onPressed: () => _searchController.onClear(_searchFieldController), child: const Text('Clear')),
-              ],
+            SearchActions(
+              formKey: formKey,
+              searchFieldController: _searchFieldController,
             ),
             Expanded(
               child: GetBuilder<SearchController>(
@@ -39,12 +34,5 @@ class HomeView extends StatelessWidget {
             )
           ],
         ));
-  }
-
-  void onSearchPress() async {
-    if (formKey.currentState!.validate()) {
-      var searchTerm = _searchFieldController.text;
-      _searchController.getImages(searchTerm);
-    }
   }
 }

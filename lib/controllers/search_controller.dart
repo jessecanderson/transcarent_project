@@ -14,7 +14,6 @@ class SearchController extends GetxController {
   List<ImagesResult> imageResults = <ImagesResult>[].obs;
 
   int pageNumber = 2;
-
   Rx<SearchStatus> searchStatus = Rx<SearchStatus>(SearchStatus.done);
 
   void getImages(String searchTerm) async {
@@ -22,6 +21,7 @@ class SearchController extends GetxController {
       currentSearchTerm = searchTerm;
     }
     searchStatus(SearchStatus.searching);
+    update();
     SearchResults response = await ApiBase.getImages(searchTerm);
     if (response.imagesResults != null) {
       imageResults = response.imagesResults!;

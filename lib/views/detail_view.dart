@@ -2,12 +2,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:get/get.dart';
+import 'package:transcarent_project/controllers/save_controller.dart';
 import 'package:transcarent_project/models/search_model.dart';
 
 class DetailView extends StatelessWidget {
   DetailView({Key? key, required this.result}) : super(key: key);
 
   ImagesResult result;
+
+  final _saveController = Get.put(SaveController());
 
   @override
   Widget build(BuildContext context) {
@@ -31,15 +34,17 @@ class DetailView extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              IconButton(
-                iconSize: 35.0,
-                onPressed: () async => {
-                  GallerySaver.saveImage(result.original).then(
-                    (value) => Get.snackbar('Image Saved', 'Your image has been saved.'),
-                  )
-                },
-                icon: const Icon(Icons.save_alt),
-              ),
+              GetBuilder<SaveController>(builder: (_) {
+                if (_saveController.isSaving.value) {
+                  return const CircularProgressIndicator();
+                } else {
+                  return IconButton(
+                    iconSize: 35.0,
+                    onPressed: () => _saveController.savePhoto(result),
+                    icon: const Icon(Icons.save_alt),
+                  );
+                }
+              }),
             ],
           )
         ],

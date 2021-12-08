@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SearchWidget extends StatelessWidget {
-  SearchWidget({
+  const SearchWidget({
     Key? key,
     required TextEditingController searchFieldController,
     required GlobalKey formKey,
