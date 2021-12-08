@@ -1,16 +1,11 @@
 # transcarent_project
 
-A new Flutter project.
+Search Google API through [Serpapi](https://serpapi.com/).
 
-## Getting Started
+## This project allow the user to search the Google Image API from Serpapi and see a three column grid view of returned images.
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- GetX Integrations for state managment and reactive design
+- Download images to the local device
+- Some reusable widgets to build upon for future updates.

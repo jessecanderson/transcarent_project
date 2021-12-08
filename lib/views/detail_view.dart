@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery_saver/gallery_saver.dart';
+import 'package:get/get.dart';
 import 'package:transcarent_project/models/search_model.dart';
 
 class DetailView extends StatelessWidget {
@@ -33,7 +34,9 @@ class DetailView extends StatelessWidget {
               IconButton(
                 iconSize: 35.0,
                 onPressed: () async => {
-                  GallerySaver.saveImage(result.original),
+                  GallerySaver.saveImage(result.original).then(
+                    (value) => Get.snackbar('Image Saved', 'Your image has been saved.'),
+                  )
                 },
                 icon: const Icon(Icons.save_alt),
               ),
