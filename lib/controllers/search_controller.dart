@@ -44,6 +44,7 @@ class SearchController extends GetxController {
     currentSearchTerm = '';
     imageResults.clear();
     controller.clear();
+    searchStatus(SearchStatus.done);
     update();
   }
 }
