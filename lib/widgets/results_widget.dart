@@ -41,6 +41,7 @@ class ResultsWidget extends StatelessWidget {
                     child: Hero(
                       tag: result.position,
                       child: CachedNetworkImage(
+                        memCacheHeight: 400,
                         imageUrl: result.original,
                         placeholder: (context, url) => const SizedBox(
                           height: 50,
