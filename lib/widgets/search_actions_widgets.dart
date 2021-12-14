@@ -34,7 +34,13 @@ class SearchActions extends StatelessWidget {
 
                 case SearchStatus.done:
                   return ElevatedButton(
-                    onPressed: onSearchPress,
+                    onPressed: () {
+                      FocusNode currentFocus = FocusScope.of(context);
+                      if (currentFocus.hasFocus) {
+                        currentFocus.unfocus();
+                        onSearchPress();
+                      }
+                    },
                     child: const Text('Search'),
                   );
               }
